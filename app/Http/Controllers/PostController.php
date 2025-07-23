@@ -92,7 +92,7 @@ class PostController extends Controller
 
         $post->update($validated);
 
-        return redirect()->route('posts.index')->with('success', 'Post updated!');
+        return redirect()->route('profile.posts')->with('success', 'Post updated!');
     }
 
     // Delete post
@@ -104,7 +104,7 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('posts.index')->with('success', 'Post deleted.');
+        return redirect()->back()->with('success', 'Post deleted.');
     }
 
     // Redirected dashboard route
