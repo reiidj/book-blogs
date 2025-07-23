@@ -1,85 +1,90 @@
-BookBlog - Mini Laravel Blog Project
-This is a simple blog application built with Laravel. It supports user authentication, post management (CRUD), image uploads, and a clean, responsive UI styled with Tailwind CSS.
+# BookBlog - Mini Laravel Blog Project
 
-Features
-User registration and login (using Laravel Breeze)
+A simple blog application built with Laravel. It supports user authentication, post management (CRUD), image uploads, and a clean, responsive UI styled with Tailwind CSS.
 
-Create, read, update, and delete posts
+---
 
-Optional image upload for posts
+## Features
 
-Public view of blog posts
+- User registration and login (using Laravel Breeze)  
+- Create, read, update, and delete posts  
+- Optional image upload for posts  
+- Public view of blog posts  
+- User-specific dashboard to manage own posts  
+- Clean and responsive UI with Tailwind CSS and custom color theme  
 
-User-specific dashboard to manage own posts
+---
 
-Clean and responsive UI with Tailwind CSS and custom color theme
+## Tech Stack
 
-Tech Stack
-Laravel 10+
+- Laravel 10+  
+- PHP 8+  
+- SQLite (default, but can be changed)  
+- Tailwind CSS  
+- Laravel Breeze (for authentication)  
 
-PHP 8+
+---
 
-SQLite (default, but can be changed)
+## Installation
 
-Tailwind CSS
+1. Clone the repository:
 
-Laravel Breeze (for authentication)
+    ```bash
+    git clone https://github.com/reiidj/book-blogs.git
+    cd book-blogs
+    ```
 
-Installation
-Clone this repository:
+2. Install PHP and Node dependencies:
 
-bash
-Copy
-Edit
-git clone https://github.com/reiidj/book-blogs.git
-cd book-blogs
-Install dependencies:
+    ```bash
+    composer install
+    npm install
+    npm run dev
+    ```
 
-bash
-Copy
-Edit
-composer install
-npm install
-npm run dev
-Copy .env.example to .env and configure your database settings. By default, it uses SQLite.
+3. Setup environment file and SQLite database:
 
-bash
-Copy
-Edit
-cp .env.example .env
-touch database/database.sqlite
-Then update .env:
+    ```bash
+    cp .env.example .env
+    touch database/database.sqlite
+    ```
 
-pgsql
-Copy
-Edit
-DB_CONNECTION=sqlite
-DB_DATABASE=/full/path/to/database/database.sqlite
-Generate app key:
+4. Edit `.env` file to configure the database connection:
 
-bash
-Copy
-Edit
-php artisan key:generate
-Run migrations:
+    ```
+    DB_CONNECTION=sqlite
+    DB_DATABASE=/full/path/to/database/database.sqlite
+    ```
 
-bash
-Copy
-Edit
-php artisan migrate
-Serve the app:
+5. Generate application key:
 
-bash
-Copy
-Edit
-php artisan serve
-Access your app at http://localhost:8000
+    ```bash
+    php artisan key:generate
+    ```
 
-Usage
-Register a new account or login.
+6. Run migrations to create database tables:
 
-Create new blog posts with optional image uploads.
+    ```bash
+    php artisan migrate
+    ```
 
-View all public posts on the public posts page.
+7. Start the development server:
 
-Manage your posts from the user dashboard.
+    ```bash
+    php artisan serve
+    ```
+
+8. Visit the application at [http://localhost:8000](http://localhost:8000)
+
+---
+
+## Usage
+
+- Register a new account or log in.  
+- Create new blog posts with optional image uploads.  
+- View all public posts on the public posts page.  
+- Manage your posts from your user dashboard.
+
+---
+
+Feel free to contribute or report issues!
