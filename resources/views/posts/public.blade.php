@@ -1,85 +1,94 @@
-@extends('layouts.app') {{-- Extends the main layout --}}
+@extends('layouts.app')
 
 @section('content')
+<style>
+    .bg-fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+        background-image: url('{{ asset('images/Library.jpg') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<div class="bg-fullscreen"></div>
+
     {{-- START: Page Header for Public Posts --}}
-    <div class="mb-8 text-center">
-        <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white leading-tight">
-            Latest Blog Posts
-        </h1>
-        <p class="mt-2 text-lg text-gray-600 dark:text-gray-300">
-            Discover engaging articles and insights from our community.
-        </p>
+    <div class="mb-12">
+        <div class="max-w-3xl mx-auto bg-white/90 dark:bg-base p-10 rounded-xl shadow-xl text-center backdrop-blur-sm">
+            <h1 class="text-4xl font-extrabold text-gray-900 dark:text-accent leading-tight">
+                Latest Blog Posts
+            </h1>
+            <p class="mt-2 text-lg text-gray-600 dark:text-primary-300">
+                Discover engaging articles and insights from our community.
+            </p>
+        </div>
     </div>
     {{-- END: Page Header for Public Posts --}}
 
+
     {{-- START: Conditional Display for Posts or No Posts Message --}}
     @if ($posts->isEmpty())
-        {{-- Message displayed when no public posts are found --}}
         <div class="text-center py-12">
             <p class="text-2xl text-gray-600 dark:text-gray-400 mb-6">No public posts available yet.</p>
-            {{-- Optionally, a call to action for logged-in users to create the first post --}}
             @auth
-                <a href="{{ route('posts.create') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out">
+                <a href="{{ route('posts.create') }}"
+                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out">
                     Create Your First Post!
                 </a>
             @endauth
         </div>
     @else
-        {{-- START: Posts Grid Layout for Public Posts --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-20">
-
-            {{-- Loop through each post to create a card --}}
             @foreach ($posts as $post)
-                {{-- START: Individual Public Post Card --}}
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-12
+                <div class="bg-accent dark:bg-accent rounded-xl shadow-lg overflow-hidden mb-12
                             transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
 
-                    {{-- Image Section of the Card --}}
-                    <div class="aspect-w-16 aspect-h-9 bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                    {{-- Image Section --}}
+                    <div class="aspect-w-16 aspect-h-9 overflow-hidden">
                         @if($post->image_url)
                             <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
                         @else
-                            <div class="flex items-center justify-center w-full h-full">
-                                <svg class="w-16 h-16 text-gray-400 dark:text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                            <div class="flex items-center justify-center w-full h-full bg-primary text-white">
+                                <svg class="w-16 h-16 text-white/70" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="..."/>
                                 </svg>
                             </div>
                         @endif
                     </div>
 
-                    {{-- Card Content Section --}}
-                    <div class="p-6">
-                        {{-- Post Title --}}
-                        <h2 class="text-xl md:text-2xl font-bold mb-3 text-gray-900 dark:text-white leading-tight">
-                            <a href="{{ route('posts.show', $post) }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition duration-200">
+
+                    {{-- Card Content --}}
+                    <div class="p-6 text-white dark:text-white">
+                        <h2 class="text-xl md:text-2xl font-bold mb-3 leading-tight">
+                            <a href="{{ route('posts.show', $post) }}"
+                               class="hover:underline">
                                 {{ $post->title }}
                             </a>
                         </h2>
 
-                        {{-- Post Author and Date (Meta Info) --}}
-                        <div class="flex justify-between items-center text-gray-500 dark:text-gray-400 text-xs mb-4">
+                        <div class="flex justify-between items-center text-sm text-white/80 mb-4">
                             <span>By <span class="font-semibold">{{ $post->user->name ?? 'Unknown' }}</span></span>
                             <span>{{ $post->created_at->format('M d, Y') }}</span>
                         </div>
 
-                        {{-- Post Excerpt/Content --}}
-                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-3">
+                        <p class="text-white/90 text-sm mb-4 line-clamp-3">
                             {{ Str::limit($post->content, 120) }}
                         </p>
 
-                        {{-- Read More Button --}}
                         <a href="{{ route('posts.show', $post) }}"
-                           class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4
-                                  rounded-lg transition duration-300 ease-in-out shadow-md hover:shadow-lg">
+                           class="inline-block bg-white dark:bg-white text-accent font-semibold py-2 px-4
+                                  rounded-lg transition duration-300 ease-in-out shadow-md hover:bg-gray-100 dark:hover:bg-gray-300">
                             Read More
                         </a>
                     </div>
                 </div>
-                {{-- END: Individual Public Post Card --}}
             @endforeach
-
         </div>
-        {{-- END: Posts Grid Layout for Public Posts --}}
     @endif
-    {{-- END: Conditional Display for Posts or No Posts Message --}}
 @endsection

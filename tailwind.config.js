@@ -18,8 +18,8 @@ export default {
             colors: {
                 base: '#FEFAE0',
                 primary: '#819067',
-                secondary: '#B1AB86',
-                accent: '#0A400C',
+                secondary: '#CFC9A3',
+                accent: '#304D30',
             }
         },
     },
