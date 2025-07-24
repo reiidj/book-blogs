@@ -3,15 +3,15 @@
 **BookBlog** is a lightweight blogging application built with Laravel 10+, featuring authentication, post CRUD, image uploads, and a clean, responsive interface powered by Tailwind CSS. It’s designed for simplicity, extensibility, and clean code.
 
 ## 🚀 Features  
-- ✅ User authentication via **Laravel Breeze**  
-- 📝 Full blog post management (Create, Read, Update, Delete)  
-- 🖼️ Optional image uploads for posts  
-- 🌐 Public view for all blog entries  
-- 🔒 User-specific dashboard to manage own posts  
-- 🎨 Responsive UI styled with **Tailwind CSS** and a custom theme  
+- User authentication via **Laravel Breeze**  
+- Full blog post management (Create, Read, Update, Delete)  
+- Optional image uploads for posts  
+- Public view for all blog entries  
+- User-specific dashboard to manage own posts  
+- Responsive UI styled with **Tailwind CSS** and a custom theme  
 
 ## 🧰 Tech Stack  
-- **Backend:** Laravel 10+, PHP 8+  
+- **Backend:** Laravel 12, PHP 8.2
 - **Frontend:** Tailwind CSS (with custom palette)  
 - **Authentication:** Laravel Breeze  
 - **Database:** SQLite (default; configurable to MySQL/PostgreSQL)  
@@ -45,3 +45,11 @@ php artisan migrate
 
 # 7. Start local server  
 php artisan serve  
+```
+
+## 📸 Screenshots
+
+### Welcome Page  
+<img width="1919" height="909" alt="image" src="https://github.com/user-attachments/assets/088dc748-a309-4f2b-a663-122c90dd7c1d" />
+
+
