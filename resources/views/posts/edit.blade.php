@@ -1,8 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4 sm:px-8 lg:px-16 mt-16 mb-24">
-    <div class="bg-white dark:bg-base rounded-xl shadow-xl p-6 sm:p-10 lg:p-12">
+<style>
+    .bg-fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+        background-image: url('{{ asset('images/Library.jpg') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<div class="bg-fullscreen"></div>
+
+<div class="relative z-10 min-h-screen flex items-center justify-center px-4 py-24">
+    <div class="w-full max-w-4xl bg-white/90 dark:bg-base rounded-xl shadow-xl p-6 sm:p-10 lg:p-12 backdrop-blur-sm">
 
         <h2 class="text-3xl font-bold text-primary mb-10">Edit Post</h2>
 
@@ -65,7 +82,6 @@
                     <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
                 @enderror
 
-                {{-- Optional: show current image --}}
                 @if ($post->image_url)
                     <div class="mt-4">
                         <p class="text-sm font-medium text-neutral mb-1">Current Image:</p>
@@ -77,11 +93,11 @@
             {{-- Actions --}}
             <div class="flex justify-end gap-4 pt-8">
                 <a href="{{ route('posts.index') }}"
-                    class="bg-neutral hover:bg-secondary text-white font-medium px-5 py-2 rounded-lg transition shadow">
+                   class="bg-red-600 hover:bg-red-700 text-white font-medium px-5 py-2 rounded-lg transition shadow">
                     Cancel
                 </a>
                 <button type="submit"
-                    class="bg-primary hover:bg-accent text-white font-medium px-5 py-2 rounded-lg transition shadow">
+                        class="bg-primary hover:bg-accent text-white font-medium px-5 py-2 rounded-lg transition shadow">
                     Update
                 </button>
             </div>

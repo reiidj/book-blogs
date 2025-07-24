@@ -40,11 +40,14 @@
 
         {{-- START: Conditional Display --}}
         @if ($posts->isEmpty())
-            <div class="text-center py-12">
-                <p class="text-2xl text-gray-600 dark:text-gray-400 mb-6">
-                    You haven’t written any posts yet.
-                </p>
+            <div class="max-w-xl mx-auto mt-16 mb-24 px-6">
+                <div class="bg-white dark:bg-base rounded-xl shadow-xl px-10 py-12 text-center">
+                    <p class="text-2xl text-accent dark:text-accent">
+                        You haven’t written any posts yet.
+                    </p>
+                </div>
             </div>
+
         @else
             {{-- START: Posts Grid --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-20">

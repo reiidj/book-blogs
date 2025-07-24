@@ -35,10 +35,16 @@
     {{-- START: Conditional Display for Posts or No Posts Message --}}
     @if ($posts->isEmpty())
         <div class="text-center py-12">
-            <p class="text-2xl text-gray-600 dark:text-gray-400 mb-6">No public posts available yet.</p>
+            <div class="max-w-xl mx-auto mt-16 mb-24 px-6">
+                <div class="bg-white dark:bg-base rounded-xl shadow-xl px-10 py-6 text-center">
+                    <p class="text-2xl text-accent">
+                        No public posts available yet.
+                    </p>
+                </div>
+            </div>
             @auth
                 <a href="{{ route('posts.create') }}"
-                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out">
+                   class="inline-block bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out">
                     Create Your First Post!
                 </a>
             @endauth
