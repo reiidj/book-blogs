@@ -1,6 +1,6 @@
 # 📚 BookBlog — A Minimalist Laravel Blog Platform
 
-**BookBlog** is a lightweight blogging application built with Laravel 10+, featuring authentication, post CRUD, image uploads, and a clean, responsive interface powered by Tailwind CSS. It’s designed for simplicity, extensibility, and clean code.
+**BookBlog** is a lightweight blogging application built with Laravel 12, featuring authentication, post CRUD, image uploads, and a clean, responsive interface powered by Tailwind CSS. It’s designed for simplicity, extensibility, and clean code.
 
 ## 🚀 Features  
 - User authentication via **Laravel Breeze**  
