@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 // Public landing page (WELCOME PAGE IS THE FIRST PAGE TO BE SHOWN)
 Route::get('/', function () {
@@ -34,4 +36,23 @@ Route::middleware('auth')->group(function () {
 Route::get('/public-posts', [PostController::class, 'publicIndex'])->name('posts.public');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
-require __DIR__.'/auth.php';
+
+// Admin Routes
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Main dashboard hub
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+    // User Management Page
+    Route::get('/users', [AdminController::class, 'usersIndex'])->name('users.index');
+    Route::patch('/users/{user}/make-admin', [AdminController::class, 'makeAdmin'])->name('users.makeAdmin');
+    Route::patch('/users/{user}/make-user', [AdminController::class, 'makeUser'])->name('users.makeUser');
+
+    // Post Management Page
+    Route::get('/posts', [AdminController::class, 'postsIndex'])->name('posts.index');
+    Route::delete('/posts/{post}', [AdminController::class, 'destroyPost'])->name('posts.destroy');
+});
+
+// THIS IS THE NEW LOGOUT ROUTE
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout.get');
+
+require __DIR__.'/auth.php';    

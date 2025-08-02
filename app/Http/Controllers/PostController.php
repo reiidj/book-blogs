@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::where('user_id', Auth::id())->latest()->get();
-        return view('posts.index', compact('posts'));
+        return view('posts.public', compact('posts'));
     }
 
     // Show public posts (anyone can see)
@@ -40,31 +40,32 @@ class PostController extends Controller
     }
 
     // Store new post
+
+
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'author' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        // 1. Validate the input
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            // The input name from the form is still 'image'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        // Handle the uploaded image
-        $imageUrl = null;
+        // 2. Add the logged-in user's ID
+        $validatedData['user_id'] = Auth::id();
+
+        // 3. Check for a file and store it
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('posts', 'public');
-            $imageUrl = '/storage/' . $path;
+            $validatedData['image_url'] = $path;
         }
 
-        Post::create([
-            'title' => $validated['title'],
-            'content' => $validated['content'],
-            'author' => $request->input('author'),
-            'image_url' => $imageUrl,
-            'user_id' => Auth::id(),
-        ]);
+        // 4. Create the post
+        Post::create($validatedData);
 
-        return redirect()->route('profile.posts')->with('success', 'Post created!');
+        // 5. Redirect
+        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
     }
 
 

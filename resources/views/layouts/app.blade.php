@@ -13,7 +13,8 @@
 </head>
 <body class="font-sans antialiased bg-base text-accent tracking-wide leading-relaxed">
 
-    <div class="min-h-screen flex flex-col">
+    {{-- THIS IS THE FIX: Added id="app" to this main wrapper --}}
+    <div id="app" class="min-h-screen flex flex-col">
 
         {{-- Navigation --}}
         <nav class="bg-primary shadow-md">
@@ -59,15 +60,15 @@
                         <div class="flex items-center gap-2 text-base text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5.121 17.804A9.001 9.001 0 1118.879 6.196 9.001 9.001 0 015.121 17.804z" />
+                                      d="M5.121 17.804A9.001 9.001 0 1118.879 6.196 9.001 9.001 0 015.121 17.804z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                             Hello, <strong class="font-semibold text-white">{{ Auth::user()->name }}</strong>
                         </div>
 
                         <a href="{{ route('profile.edit') }}"
-                        class="text-accent hover:underline font-medium text-sm transition">
+                           class="text-accent hover:underline font-medium text-sm transition">
                             Edit
                         </a>
 
@@ -77,7 +78,7 @@
                                     class="bg-red-600 hover:bg-red-700 text-white font-semibold text-sm px-4 py-2 rounded-md shadow-md transition flex items-center gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 16l4-4m0 0l-4-4m4 4H7" />
+                                          d="M17 16l4-4m0 0l-4-4m4 4H7" />
                                 </svg>
                                 Logout
                             </button>
@@ -110,7 +111,7 @@
         </main>
 
         {{-- Footer --}}
-        <footer class="bg-primary py-6 mt-12">
+        <footer class="bg-primary py-6 mt-auto">
             <div class="text-center text-sm text-accent max-w-7xl mx-auto px-4">
                 <span class="italic">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}.</span>
                 <span class="font-medium">All rights reserved.</span>
